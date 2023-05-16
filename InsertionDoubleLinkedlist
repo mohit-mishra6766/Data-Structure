@@ -1,0 +1,83 @@
+import java.util.*;
+public class insertionDoubleLinklist {
+	static class Node{
+		int data;
+		Node next;
+		Node prev;
+		Node(int data){
+			this.data=data;
+			this.next=null;
+			this.prev=null;
+		}
+	}
+	Node head=null;
+	Node tail=null;
+	public void creater() {
+		int data, m,n,p;
+		Scanner sc =new Scanner(System.in);
+		do {
+			System.out.println("enter the data");
+			data=sc.nextInt();
+			Node new_node=new Node(data);
+			if(head==null) {
+				head=new_node;
+				tail=new_node;
+			
+			}
+			else {
+				System.out.println("if you want to add beginning then press 1, at the end then 2 , at the any point then 3");
+				m=sc.nextInt();
+				switch(m) {
+				case 1:
+					new_node.next=head;
+					head.prev=new_node;
+					head=new_node;
+					break;
+				case 2:
+					tail.next=new_node;
+					new_node.prev=tail;
+					tail=new_node;
+					break;
+				case 3:
+					System.out.println("where you want to add it");
+					p=sc.nextInt();
+					Node temp1 =head;
+					Node ptr=temp1.next;
+					for(int i=0;i<p-1;i++) {
+						temp1=ptr;
+						ptr=ptr.next;
+					}
+					new_node.prev=temp1;
+					new_node.next=ptr;
+					temp1.next=new_node;
+					ptr.next=new_node; 
+					break;
+				}
+				
+			}
+			System.out.println("If you add the data then press 1");
+			n=sc.nextInt();
+		}
+		while(n==1);
+		
+	}
+	public void tansverser() {
+		Node temp=head;
+		if(head==null) {
+			System.out.println("ll does not exist");
+		}
+		else {
+			System.out.println(temp.data);
+			temp=temp.next;
+		}
+	}
+
+	public static void main(String[] args) {
+		insertionDoubleLinklist s= new insertionDoubleLinklist();
+		s.creater();
+		s.tansverser();
+		// TODO Auto-generated method stub
+
+	}
+
+}
